@@ -1,2 +1,8 @@
 # Sudoko-Solver-Visualizer-Project
-This is sudoko solver visualizer
+Reg NO: 12220132
+Name: Shreyas Sawaiker
+DSA Project: Sudoko solver algorithm using backtracking and recursion visualised uisng javascript,html and css.
+
+
+Live hosted on github pages
+link: 
