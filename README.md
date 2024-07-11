@@ -8,4 +8,4 @@ DSA Project: Sudoko solver algorithm using backtracking and recursion visualised
 <br></br>
 Live hosted on github pages
 <br></br>
-link: 
+live link [here](https://shreyassawaiker.github.io/Sudoko-Solver-Visualizer-Project/)
