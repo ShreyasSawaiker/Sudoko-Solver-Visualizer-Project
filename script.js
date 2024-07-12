@@ -1,5 +1,6 @@
 var grid;
 var algorithm;
+var speed;
 var speedInt;
 var solution = null;
 var inProgress = false;
@@ -21,7 +22,8 @@ const grabGrid = () => {
 
 grid = grabGrid();
 algorithm = "algorithm-x";
-speedInt = 10;
+speed = "Fast";
+speedInt = 30;
 
 // Function to clear the Sudoku grid
 const clearGrid = () => {
@@ -36,6 +38,10 @@ const clearGrid = () => {
   );
   solution = null;
 };
+
+// // Event listener for the "Clear" button
+// const clearGridBtn = document.getElementById("clearBtn");
+// clearGridBtn.addEventListener("click", clearGrid);
 
 
 // Function to generate a Sudoku puzzle
@@ -203,11 +209,37 @@ grid.forEach((row, rowIdx) =>
     });
   })
 );
+
+// Event listeners for speed selection
+const speedBtns = document.querySelectorAll(`#speed ~ ul > li`);
+speedBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    // Update the selected speed and reset the grid
+    speed = e.target.getAttribute("data-value");
+    speedBtns.forEach((option) => option.classList.remove("active"));
+    e.target.classList.add("active");
+    // Map speed to corresponding speed interval
+    switch (speed) {
+      case "Fast":
+        speedInt -=40;
+        break;
+      case "Average":
+        speedInt += 50;
+        break;
+      case "Slow":
+        speedInt += 100;
+        break;
+    }
+    document.getElementById("speed").checked = false;
+  });
+});
+
 // Event listener for the "Visualize" button
 const visualizeBtn = document.getElementById("visualizeBtn");
 visualizeBtn.addEventListener("click", () => {
   // Check if animation is in progress
   if (inProgress) {
+    showAlert("Animation in progress", "danger");
     return;
   }
   // Clear the grid before visualization
@@ -262,6 +294,7 @@ const backtracking = (
         })
       );
       animate(animationList, speedInt);
+      let duration = Date.now() - counter["startTime"];
     }
     enableMenu(animationList.length);
     return true;
@@ -388,4 +421,15 @@ const enableMenu = (events) => {
         checkbox.disabled = false;
       });
   }, events * speedInt);
+};
+
+const showAlert = (msg, className) => {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.classList.add(className);
+  alert.appendChild(document.createTextNode(msg));
+  document.querySelector("body").appendChild(alert);
+  setTimeout(() => {
+    document.querySelector("body").removeChild(alert);
+  }, 5000);
 };

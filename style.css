@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,400;1,200&display=swap");
 
 * {
     margin: 0;
@@ -48,13 +49,85 @@ nav>ul li {
     font-size: 1.05rem;
     font-weight: 500;
     cursor: pointer;
-    padding: 0.3rem;
     color: rgb(255, 255, 255);
+    padding: 0.3rem;
+    transition: all 0.1s linear;
 }
 
 nav>ul li:hover {
     font-size: 1.02rem;
     font-weight: 1000;
+}
+
+li>input[type="checkbox"] {
+    visibility: hidden;
+}
+
+li>input[type="checkbox"]+label {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+li>input[type="checkbox"]+label:hover {
+    border: none;
+}
+
+li>input[type="checkbox"]+label i {
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+    transition: all 0.3s;
+}
+
+li>input[type="checkbox"]~ul {
+    display: none;
+}
+
+li>input[type="checkbox"]:checked+label i {
+    transform: rotate(180deg);
+}
+
+li>input[type="checkbox"]:checked~ul {
+    display: block;
+    list-style: none;
+    position: absolute;
+    background: #181a1b;
+    box-shadow: 1px 1px 10px rgb(7, 7, 7), -1px -1px 10px #705a5a;
+    color: #fff;
+    border-radius: 5px;
+    padding: 0.5rem;
+    z-index: 400;
+    margin: 0.3rem;
+}
+
+li>input[type="checkbox"]:checked~ul li {
+    width: 10rem;
+    height: 3rem;
+    line-height: 3;
+    border-bottom: 1px dotted #22e5d5c0;
+}
+
+li>input[type="checkbox"]:checked~ul li:hover {
+    border-left: 5px solid #22e5d5c0;
+    padding-left: 0.6rem;
+}
+
+li>input[type="checkbox"]:checked~ul li.active {
+    border-left: 5px solid #22e5d5c0;
+    padding-left: 0.6rem;
+    border-bottom-style: solid;
+}
+
+#visualizeBtn {
+    font-weight: 500;
+    margin-left: 2rem;
+    font-size: 1.1rem;
+}
+
+#visualizeBtn:hover {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: black;
 }
 
 .overlay {
@@ -64,6 +137,30 @@ nav>ul li:hover {
     top: 0;
     left: 0;
     background: #181a1b;
+}
+
+.alert {
+    width: 50%;
+    padding: 1rem;
+    z-index: 100;
+    position: absolute;
+    top: 5.5rem;
+    left: 0.5rem;
+    border-radius: 3px;
+    color: #fff;
+    transition: 0.3s all;
+}
+
+.alert.hidden {
+    left: -50rem;
+}
+
+.alert.danger {
+    background: #800000df;
+}
+
+.alert.success {
+    background: #158000df;
 }
 
 .grid-container {
@@ -78,10 +175,10 @@ nav>ul li:hover {
     bottom: 3rem;
 }
 
-/* .grid-container .row:nth-child(3),
+.grid-container .row:nth-child(3),
 .grid-container .row:nth-child(6) {
-    border-bottom: 4px solid #000000;
-}         */
+    border-bottom: 4px solid#181a1b;
+}
 
 .grid-container .row td {
     text-align: center;
@@ -97,10 +194,10 @@ nav>ul li:hover {
     background: #181a1b;
 }
 
-/* .grid-container .row td:nth-child(3),
+.grid-container .row td:nth-child(3),
 .grid-container .row td:nth-child(6) {
-    border-right: 1px solid #000000;
-} */
+    border-right: 4px solid #181a1b;
+}
 
 .row td input {
     display: inline-block;
@@ -138,4 +235,4 @@ nav>ul li:hover {
         height: 28rem;
         width: 28rem;
     }
-} 
+}
